@@ -8,6 +8,10 @@
     <pre>{{ selectedUserId$ | async }} </pre>
 </div>
 
+<div *ngIf="error$ | async as error">
+    {{ error.statusText }}
+</div>
+
 <button (click)="add()">Add</button>
 
 <ul>

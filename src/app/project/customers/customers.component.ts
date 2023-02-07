@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { generateRandomName } from "../utils/string.utils";
 
@@ -9,11 +9,16 @@ import * as fromCustomers from "./store/customers.reducer";
   templateUrl: "./customers.component.html",
   styleUrls: ["./customers.component.scss"],
 })
-export class CustomersComponent {
+export class CustomersComponent implements OnInit {
   entities$ = this.store.select(fromCustomers.selectAll);
   selectedUserId$ = this.store.select(fromCustomers.getSelectedCustomerId);
+  error$ = this.store.select(fromCustomers.selectError);
 
   constructor(private readonly store: Store<fromCustomers.State>) {}
+
+  ngOnInit() {
+    this.store.dispatch(fromCustomers.customersActions.enter());
+  }
 
   add() {
     this.store.dispatch(
