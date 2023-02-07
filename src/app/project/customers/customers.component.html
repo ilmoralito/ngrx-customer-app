@@ -1,1 +1,19 @@
 <p>customers works!</p>
+
+<div>
+    <pre>{{ entities$ | async | json }}</pre>
+</div>
+
+<div>
+    <pre>{{ selectedUserId$ | async }} </pre>
+</div>
+
+<button (click)="add()">Add</button>
+
+<ul>
+    <li *ngFor="let customer of entities$ | async">
+        {{ customer.name }} <button (click)="edit(customer)">Edit</button>
+        <button (click)="delete(customer.id)">Delete</button>
+        <button (click)="set(customer.id)">Set</button>
+    </li>
+</ul>
