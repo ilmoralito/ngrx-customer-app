@@ -1,0 +1,24 @@
+<p>movies works!</p>
+
+<div style="display: flex; justify-content: between">
+    <div>
+        <pre>{{ movies$ | async | json }}</pre>
+
+        <pre>{{ moviesIds$ | async | json }}</pre>
+
+        <pre>{{ selectedMovies$ | async | json }}</pre>
+
+        <pre>{{ vm$ | async | json }}</pre>
+    </div>
+
+    <div>
+        <button (click)="add()">Add</button>
+        <button (click)="reset()">Reset</button>
+        <ul>
+            <li *ngFor="let movie of (vm$ | async)!.movies">
+                {{ movie.name }} <button (click)="edit(movie)">Edit</button>
+                <button (click)="delete(movie.id)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</div>
